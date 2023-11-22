@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Cliente {
@@ -15,9 +16,9 @@ public class Cliente {
     @JsonIgnore
     //para não ser reduntante junto com a conta e quando puxar do banco de dado, não ter que puxar cada um toda vez
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
-    private ArrayList<Conta> conta;
+    private List<Conta> conta;
 
-    public ArrayList<Conta> getConta() {
+    public List<Conta> getConta() {
         return conta;
     }
 
@@ -29,7 +30,7 @@ public class Cliente {
 
     }
     //se o id vai ser gerado automaticmanete, nao precisa ser iniciado no construtor
-    public Cliente(String nome, ArrayList<Conta> conta) {
+    public Cliente(String nome, List<Conta> conta) {
        this.nome = nome;
        this.conta = conta;
     }
@@ -49,6 +50,5 @@ public class Cliente {
     public void setNome(String nome) {
         this.nome = nome;
     }
-
 
 }
